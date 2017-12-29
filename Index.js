@@ -24,7 +24,8 @@ menu.on("select", async label => {
     let session = sessions.find(value => value.Name.toLowerCase() === label.toLowerCase());
     if (!session) return;
     menu.close();
-    let command = `xfreerdp /u:${session.User} /d:${session.Domain} /v:${session.HostName} +clipboard /rfx /rfx-mode:video /sound:sys:alsa /async-update /async-input +fonts +aero /audio-mode:0 /frame-ack:1 +window-drag +decorations /network:lan -encryption`;
+    if (session.Port) session.HostName += `:${session.Port}`;
+    let command = `xfreerdp /u:${session.User} /d:${session.Domain} /v:${session.HostName} +clipboard /rfx /rfx-mode:video /sound:sys:alsa /async-update /async-input +fonts +aero /audio-mode:0 /frame-ack:1 +window-drag +decorations /network:lan -encryption /cert-ignore`;
     if (session.Fullscreen) command += " /f";
     console.log(`${session.Domain}\\${session.User}@${session.HostName}`);
     await exec(command);
