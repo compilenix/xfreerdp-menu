@@ -15,7 +15,7 @@ sessions.sort((a, b) => {
 async function run(/** @type {any} */ session) {
     // console.log(session);
     if (session["Port"]) session.HostName += `:${session.Port}`;
-    let command = `echo "${Buffer.from(session.Password, "base64")}" | xfreerdp /u:${session.User} /d:${session.Domain} /v:${session.HostName} /from-stdin +clipboard /rfx /rfx-mode:video /sound:sys:alsa /async-update /async-input +fonts +aero /audio-mode:0 /frame-ack:1 +window-drag +decorations /network:lan -encryption /cert-ignore`;
+    let command = `echo "${session.Password}" | base64 -d | xfreerdp /u:${session.User} /d:${session.Domain} /v:${session.HostName} /from-stdin +clipboard /rfx /rfx-mode:video /sound:sys:alsa /async-update /async-input +fonts +aero /audio-mode:0 /frame-ack:1 +window-drag +decorations /network:lan -encryption /cert-ignore`;
     if (session.Fullscreen) command += " /f";
     console.log(`${session.Domain}\\${session.User}@${session.HostName}`);
     await exec(command);
