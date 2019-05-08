@@ -1,4 +1,7 @@
 # Notes
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/compilenix/xfreerdp-menu.svg)](https://greenkeeper.io/)
+
 Using this tool "exposes" your passwords to local users, because the password will be visable within the commandline!
 
 # Installation
