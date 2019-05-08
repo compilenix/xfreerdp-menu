@@ -5,9 +5,9 @@
     "author": "Compilenix <Compilenix@compilenix.org>",
     "main": "Index.js",
     "dependencies": {
-        "fs-extra": "5.0.0",
+        "fs-extra": "7.0.1",
         "terminal-menu": "2.1.1",
-        "trim-newlines": "2.0.0"
+        "trim-newlines": "3.0.0"
     },
     "repository": {
         "type": "git",
