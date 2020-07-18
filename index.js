@@ -50,7 +50,7 @@ async function run (/** @type {Session} */ session) {
   if (session.Port) session.HostName += `:${session.Port}`
   const executable = config.ExecutableOverwride ? config.ExecutableOverwride : 'xfreerdp'
 
-  let command = `echo "${session.Password}" | base64 -d | ${executable} /u:${session.User} /d:${session.Domain} /v:${session.HostName} /t:"RDP: ${session.Name}" /from-stdin +toggle-fullscreen +auto-reconnect /auto-reconnect-max-retries:20 +drives +home-drive /dynamic-resolution +clipboard /rfx /gdi:hw /video /ipv6 +multitransport +multitouch /geometry +gestures +offscreen-cache /async-update /async-input /frame-ack:1 +fonts /floatbar:sticky:on,default:visible,show:${config.Floatbar} -encryption /cert-ignore`
+  let command = `echo "${session.Password}" | base64 -d | "${executable}" /u:${session.User} /d:${session.Domain} /v:${session.HostName} /t:"RDP: ${session.Name}" /from-stdin +toggle-fullscreen +auto-reconnect /auto-reconnect-max-retries:20 +drives +home-drive /dynamic-resolution +clipboard /rfx /gdi:hw /video /ipv6 +multitransport +multitouch /geometry +gestures +offscreen-cache /async-update /async-input /frame-ack:1 +fonts /floatbar:sticky:on,default:visible,show:${config.Floatbar} -encryption /cert-ignore`
 
   if (session.Fullscreen) {
     command += ' /f'
